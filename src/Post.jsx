@@ -6,7 +6,9 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
-const Post = ({name, description,message,postUrl}) => {
+const Post = ({key,name, description,message,postUrl, posts}) => {
+  // 
+  // console.log("abhi7",props.posts.name)
   return (
     <div className='post'>
       <div className='post_header'>
