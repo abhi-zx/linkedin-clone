@@ -8,5 +8,4 @@ const InputOption = ({Icon,title,color}) => {
         </div>
   )
 }
-
 export default InputOption

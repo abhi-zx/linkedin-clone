@@ -1,20 +1,20 @@
-import React, { useEffect ,useState} from 'react'
-import './Feed.css'
-import InputOption from './InputOption'
 import CreateIcon from '@mui/icons-material/Create';
 import TodayIcon from '@mui/icons-material/Today';
 import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+
+import React, { useEffect ,useState} from 'react'
+import InputOption from './InputOption'
+
 import Post from './Post'
+import './Feed.css'
 
 import {onSnapshot, collection, addDoc ,getDocs} from "firebase/firestore";
 import { db ,auth} from './firebase';
 
-
 const Feed = () => {
-    // var count=0;
-    // const Colref = collection(db, 'posts')
+    
     // const[count,setCount]=useState(0)
     const[input,setInput]=useState('');
     const [posts, setPosts]=useState([]);
@@ -26,12 +26,8 @@ const Feed = () => {
                 id: doc.id,
                 data: doc.data()
             }))
-        ))
-//         setPosts(dd)
-// console.log("anny"+"  "+posts)
-// https://www.fotor.com/blog/wp-content/uploads/2019/10/12.blur-photo.png
-// console.log(posts)
-    , []);
+        )), []);
+        
     const sendPost = (e) => {
     //    setCount(count+1)
         e.preventDefault();
@@ -61,11 +57,7 @@ const Feed = () => {
                     <InputOption Icon={FeedOutlinedIcon} title="Write article" color="#FC9295"/>
                 </div>
             </div>
-            {/* {console.log('anny',posts)
-             } */}
-             {/* {id,data:{name,description,message,photoUrl}} */}
 
-             {/* {console.log('anny',posts)} */}
             {posts.map(({id,data:{name,description,message,photoUrl}})=>(
                 // console.log(count++)
                 <Post
