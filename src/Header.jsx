@@ -10,12 +10,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 const Header = () => {
   return (
     <div className="header">
-        {/* <h1>Thish is a header</h1> */}
         <div className="header_left">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></img>
             <div className="header_search">
                 <SearchIcon/>
-                <input type="text" className=""></input>
+                <input  placeholder="serach" type="text" className=""></input>
                 </div>
             </div>
             <div className="header_right">
