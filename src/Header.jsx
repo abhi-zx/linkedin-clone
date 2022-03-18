@@ -7,7 +7,20 @@ import HeaderOption from './HeaderOption'
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import WorkOffIcon from '@mui/icons-material/WorkOff';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useDispatch } from 'react-redux';
+
+import { getAuth ,signOut} from "firebase/auth";
+import { logout } from './features/userSlice';
 const Header = () => {
+  const dispatch=useDispatch()
+  const logoutOfApp=() =>{
+    const auth = getAuth()
+    dispatch(logout())
+    signOut(auth).then(() => {
+      alert('signout')
+    }).catch(error=>(alert(error)));
+
+  }
   return (
     <div className="header">
         <div className="header_left">
@@ -23,7 +36,9 @@ const Header = () => {
                 <HeaderOption  Icon={WorkOffIcon} title='Job'/>
                 <HeaderOption Icon={MapsUgcOutlinedIcon} title='Messaging'/>
                 <HeaderOption Icon={NotificationsIcon} title='Notification'/>
-                <HeaderOption avatar='https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29uJTIwd2l0aCUyMGdsYXNzZXN8ZW58MHx8MHx8&w=1000&q=80' title='Me'/>
+                <HeaderOption avatar='https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29uJTIwd2l0aCUyMGdsYXNzZXN8ZW58MHx8MHx8&w=1000&q=80' title='Me'
+                onClick={logoutOfApp}
+                />
                 </div>
         </div>
   )

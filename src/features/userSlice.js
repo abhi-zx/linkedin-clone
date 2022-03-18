@@ -18,13 +18,9 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
     },
-     
   },
 });
 
-export const { login, logout } = userSlice.actions;
-// export const selectUser = (state) => {
-//   console.log(state.user)
-//   return state.user.user
-// };
+export const { login, logout } =   userSlice.actions;
+export const selectUser = (state) => state.counter.user;
 export default userSlice.reducer;

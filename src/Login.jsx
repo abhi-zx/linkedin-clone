@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from './features/userSlice'
 // import { auth } from './firebase'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword ,createUserWithEmailAndPassword } from "firebase/auth";
 import './Login.css'
 const Login = () => {
     const [email,setEmail]=useState("")
@@ -12,6 +12,17 @@ const Login = () => {
     const dispatch=useDispatch();
     const loginToApp =(e)=>{
         e.preventDefault();
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth,email,password)
+        .then(userAuth=>{
+            dispatch(login({
+                email:userAuth.user.email,
+                uid:userAuth.user.uid,
+                displayName: userAuth.user.name,
+                profileUrl:userAuth.user.photoURL
+              
+            }))
+        }).catch(error=>(alert(error)));
     }
     const register= () => {
         if(!name)
@@ -24,8 +35,8 @@ const Login = () => {
                 dispatch(login({
                     email:userAuth.user.email,
                     uid:userAuth.user.uid,
-                    displayName: name,
-                    photoURL:profilePic
+                    displayName:userAuth.user.name,
+                    photoURL:userAuth.user.profilePic
                 }))
             })
         .catch(error=>(alert(error)));
